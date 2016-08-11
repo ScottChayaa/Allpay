@@ -1,0 +1,13 @@
+{
+    "name": "scottchayaa/allpay",
+    "description": "Allpay - Laravel 5 version",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Scott Lin",
+            "email": "mmx112945@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
