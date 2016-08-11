@@ -1,7 +1,7 @@
 {
     "name": "scottchayaa/allpay",
     "description": "Allpay - Laravel 5 version",
-    "type": "ec tool",
+    "type": "ecTool",
     "keywords": ["allpay"],
     "authors": [
         {
