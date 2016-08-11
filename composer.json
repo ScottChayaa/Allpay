@@ -1,7 +1,8 @@
 {
     "name": "scottchayaa/allpay",
     "description": "Allpay - Laravel 5 version",
-    "type": "library",
+    "type": "ec tool",
+    "keywords": ["allpay"],
     "authors": [
         {
             "name": "Scott Lin",
@@ -9,5 +10,10 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "ScottChayaa\\Allpay\\": "src/"
+        }
+    }
 }
