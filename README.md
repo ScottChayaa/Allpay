@@ -24,11 +24,16 @@ composer install
 
 <br>
 **step 2 : Modify config file**<br>
-增加config/app.php中的providers的參數
+增加`config/app.php`中的`providers`和`aliases`的參數
 ```
 'providers' => [
   // ...
-  'Latrell\Alipay\AlipayServiceProvider',
+  ScottChayaa\Allpay\AllpayServiceProvider::class,
+]
+
+'aliases' => [
+  // ...
+  'Allpay' => ScottChayaa\Allpay\Facade\Allpay::class,
 ]
 ```
 
