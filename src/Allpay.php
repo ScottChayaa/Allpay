@@ -1,15 +1,32 @@
-<?php 
+<?php
+
 namespace ScottChayaa\Allpay;
- 
-class Allpay {
- 
-    public function saySomething() {
-        return 'Hello World!';
+
+class Allpay
+{
+
+    private $instance = null;
+
+    //--------------------------------------------------------
+
+    public function __construct()
+    {
+        $this->instance = new \AllInOne();
+
+        $this->instance->ServiceURL = config('allpay.ServiceURL');
+        $this->instance->HashKey    = config('allpay.HashKey');
+        $this->instance->HashIV     = config('allpay.HashIV');
+        $this->instance->MerchantID = config('allpay.MerchantID');
     }
- 	
- 	public function aaa() {
-        return 'Hello AAA!';
+
+    public function instance()
+    {
+        return $this->instance;
     }
- 
- 
+
+    public function i()
+    {
+        return $this->instance;
+    }
+
 }

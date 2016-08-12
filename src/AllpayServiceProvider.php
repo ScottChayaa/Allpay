@@ -14,15 +14,15 @@ class AllpayServiceProvider extends ServiceProvider
     public function boot()
     {
         //Route
-        include __DIR__.'/routes.php';
+        include __DIR__ . '/routes.php';
 
         //Language
-        $this->loadTranslationsFrom( __DIR__.'/Lang', 'allpay');
+        $this->loadTranslationsFrom(__DIR__ . '/Lang', 'allpay');
 
-        //Publish Config 
+        //Publish Config
         $this->publishes([
-            __DIR__.'/Config/allpay.php' => config_path('allpay.php'),
-        ] ,'config');
+            __DIR__ . '/Config/allpay.php' => config_path('allpay.php'),
+        ], 'config');
     }
 
     /**
@@ -33,14 +33,15 @@ class AllpayServiceProvider extends ServiceProvider
     public function register()
     {
         //Config
-        $this->mergeConfigFrom( __DIR__.'/Config/allpay.php', 'allpay');
+        $this->mergeConfigFrom(__DIR__ . '/Config/allpay.php', 'allpay');
 
         //View
         $this->loadViewsFrom(__DIR__ . '/Views', 'allpay');
 
         //Facade => Custom Class
-        $this->app['allpay'] = $this->app->share(function($app) {
+        $this->app['allpay'] = $this->app->share(function ($app) {
             return new Allpay;
         });
+
     }
 }

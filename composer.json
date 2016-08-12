@@ -11,7 +11,10 @@
     ],
     "minimum-stability": "dev",
     "require": {},
-    "autoload": {
+    "autoload": {  
+        "classmap": [
+            "src/lib"
+        ],
         "psr-4": {
             "ScottChayaa\\Allpay\\": "src/"
         }
