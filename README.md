@@ -1,8 +1,8 @@
 ## Allpay
-Allpay - Laravel 5 version
+### Allpay - Laravel 5 version
 <br>
 
-- step 1 : Download the package
+step 1 : Download the package
 composer命令安裝
 ```
 composer require latrell/alipay dev-master
@@ -22,7 +22,7 @@ composer update
 composer install
 ```
 
-- step 2 : Modify config file
+step 2 : Modify config file
 增加config/app.php中的providers的參數
 ```
 'providers' => [
@@ -31,7 +31,7 @@ composer install
 ]
 ```
 
-- step 3 : Publish config to your project
+step 3 : Publish config to your project
 執行下列命令，將package的config檔配置到你的專案中
 ```
 php artisan vendor:publish
@@ -42,7 +42,7 @@ php artisan vendor:publish
 
 ### How To Use 
 
-```
+```php
 public function Demo()
 {
     //Official Example : 
