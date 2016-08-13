@@ -101,7 +101,7 @@ http://localhost/[your-project]/public/allpay_demo_201608
 <br>
 ---
 
-### Bug Record
+### Bug Fix Record
 AllPay.Payment.Integration.php : (Latest commit e9278b9)<br>
 https://github.com/allpay/PHP/commit/e9278b9cad76e6a71608bee3f5f4289982cfe16f
 
