@@ -59,7 +59,9 @@ return [
 ---
 
 ### How To Use 
-
+```php
+use Allpay;
+```
 ```php
 public function Demo()
 {
