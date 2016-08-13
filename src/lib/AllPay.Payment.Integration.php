@@ -515,8 +515,9 @@ class AllInOne {
     }
 
     //取得付款結果通知的方法
-    function CheckOutFeedback() {
-        return $arFeedback = CheckOutFeedback::CheckOut($_POST,$this->HashKey,$this->HashIV,0);   
+    function CheckOutFeedback($allPost = null) {
+        if($allPost == null) $allPost = $_POST;
+        return $arFeedback = CheckOutFeedback::CheckOut($allPost,$this->HashKey,$this->HashIV,0);   
     }
 
     //訂單查詢作業
