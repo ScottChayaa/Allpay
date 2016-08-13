@@ -55,6 +55,7 @@ class DemoController extends Controller
                    'Currency' => "元", 'Quantity' => (int) "1", 'URL' => "dedwed"));
 
         //Go to AllPay
-        Allpay::i()->CheckOut();
+        echo "歐付寶頁面導向中...";
+        echo Allpay::i()->CheckOutString();
     }
 }
