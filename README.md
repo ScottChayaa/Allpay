@@ -105,6 +105,7 @@ http://localhost/[your-project]/public/allpay_demo_201608
 AllPay.Payment.Integration.php : (Latest commit e9278b9)<br>
 https://github.com/allpay/PHP/commit/e9278b9cad76e6a71608bee3f5f4289982cfe16f
 
+**1. 修正 CheckOutString**<br>
 原本
 ```php
 static function CheckOutString($paymentButton,$target = "_self",$arParameters = array(),$arExtend = array(),$HashKey='',$HashIV='',$ServiceURL=''){
@@ -131,7 +132,7 @@ static function CheckOutString($paymentButton,$target = "_self",$arParameters = 
     return  $szHtml ;
 }
 ```
-修改為
+修正為
 ```php
 static function CheckOutString($paymentButton,$target = "_self",$arParameters = array(),$arExtend = array(),$HashKey='',$HashIV='',$ServiceURL=''){
     
@@ -168,7 +169,34 @@ static function CheckOutString($paymentButton,$target = "_self",$arParameters = 
 如果有比較現在版本跟以前版本的人會發現這個錯誤<br>
 缺少`if (!isset($paymentButton))`的判斷<br>
 如果官方的工程師有發現這個問題就趕快解吧<br>
+<br>
 
-
-
-
+**2. 修正CheckOutFeedback**<br>
+原本
+```php
+function CheckOutFeedback() {
+    return $arFeedback = CheckOutFeedback::CheckOut($_POST,$this->HashKey,$this->HashIV,0);   
+}
+```
+修正為
+```php
+function CheckOutFeedback($allPost = null) {
+    if($allPost == null) $allPost = $_POST;
+    return $arFeedback = CheckOutFeedback::CheckOut($allPost,$this->HashKey,$this->HashIV,0);   
+}
+```
+歐付寶回傳頁面時會使用到這個方法<br>
+使用方法 ex: 
+```
+public function PayReturn(Request $request)
+{
+    /* 取得回傳參數 */
+    $arFeedback = Allpay::i()->CheckOutFeedback($request->all());
+    //...
+}
+```
+注意要傳入`$request->all()`<br>
+因為官方原本的方法是帶入`$_POST` → Laravel 5 不鳥你這個，所以會出錯<br>
+固做此修正<br>
+不過這部分沒有多做說明，留給大家試試看<br>
+<br>
