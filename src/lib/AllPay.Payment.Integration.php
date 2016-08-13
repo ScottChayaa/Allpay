@@ -651,7 +651,14 @@ class Send extends Aio
         }
 
         $szHtml .=             "<input type=\"hidden\" name=\"CheckMacValue\" value=\"{$szCheckMacValue}\" />";
-        $szHtml .=             "<input type=\"submit\" id=\"__paymentButton\" value=\"{$paymentButton}\" />";
+        
+        if (!isset($paymentButton)) {
+            $szHtml .=  '<script type="text/javascript">document.getElementById("__allpayForm").submit();</script>';
+        }
+        else{
+            $szHtml .=  "<input type=\"submit\" id=\"__paymentButton\" value=\"{$paymentButton}\" />";
+        }
+        
         $szHtml .=         '</form>';
         $szHtml .=     '</body>';
         $szHtml .= '</html>';
