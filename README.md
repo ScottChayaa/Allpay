@@ -187,7 +187,7 @@ function CheckOutFeedback($allPost = null) {
 ```
 歐付寶回傳頁面時會使用到這個方法<br>
 使用方法 ex: 
-```
+```php
 public function PayReturn(Request $request)
 {
     /* 取得回傳參數 */
