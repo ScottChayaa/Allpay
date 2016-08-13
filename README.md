@@ -81,10 +81,14 @@ public function Demo()
                'Currency' => "元", 'Quantity' => (int) "1", 'URL' => "dedwed"));
 
     //Go to AllPay
-    Allpay::i()->CheckOut();
+    echo "歐付寶頁面導向中...";
+    echo Allpay::i()->CheckOutString();
 }
 ```
-
+用laravel的人開發盡量使用`CheckOutString()`回傳String的方法<br>
+當然使用`CheckOut()`也是可以<br>
+但如果使用的話，我猜後面可能會碰到Get不到特定Session的問題<br>
+<br>
 PS : PaymentMethod前面一定要加反斜線 \ → 這目前我也沒辦法，如果有人知道怎麼樣可以不用加，請告訴我 <br>
 You Need to add Backslash '\' before PaymentMethod → I have no idea how to take it off. If someone know how to remove, please tell me how to do. thx~
 
@@ -93,3 +97,78 @@ You Need to add Backslash '\' before PaymentMethod → I have no idea how to tak
 ### Example (Localhost)
 Example Link : 
 http://localhost/[your-project]/public/allpay_demo_201608
+
+<br>
+---
+
+### Bug Record
+AllPay.Payment.Integration.php : (Latest commit e9278b9)<br>
+https://github.com/allpay/PHP/commit/e9278b9cad76e6a71608bee3f5f4289982cfe16f
+
+原本
+```php
+static function CheckOutString($paymentButton,$target = "_self",$arParameters = array(),$arExtend = array(),$HashKey='',$HashIV='',$ServiceURL=''){
+    
+    $arParameters = self::process($arParameters,$arExtend);
+    //產生檢查碼
+    $szCheckMacValue = CheckMacValue::generate($arParameters,$HashKey,$HashIV,$arParameters['EncryptType']);
+    
+    $szHtml =  '<!DOCTYPE html>';
+    $szHtml .= '<html>';
+    $szHtml .=     '<head>';
+    $szHtml .=         '<meta charset="utf-8">';
+    $szHtml .=     '</head>';
+    $szHtml .=     '<body>';
+    $szHtml .=         "<form id=\"__allpayForm\" method=\"post\" target=\"{$target}\" action=\"{$ServiceURL}\">";
+    foreach ($arParameters as $keys => $value) {
+        $szHtml .=         "<input type=\"hidden\" name=\"{$keys}\" value='{$value}' />";
+    }
+    $szHtml .=             "<input type=\"hidden\" name=\"CheckMacValue\" value=\"{$szCheckMacValue}\" />";
+    $szHtml .=             "<input type=\"submit\" id=\"__paymentButton\" value=\"{$paymentButton}\" />";
+    $szHtml .=         '</form>';
+    $szHtml .=     '</body>';
+    $szHtml .= '</html>';
+    return  $szHtml ;
+}
+```
+修改為
+```php
+static function CheckOutString($paymentButton,$target = "_self",$arParameters = array(),$arExtend = array(),$HashKey='',$HashIV='',$ServiceURL=''){
+    
+    $arParameters = self::process($arParameters,$arExtend);
+    //產生檢查碼
+    $szCheckMacValue = CheckMacValue::generate($arParameters,$HashKey,$HashIV,$arParameters['EncryptType']);
+    
+    $szHtml =  '<!DOCTYPE html>';
+    $szHtml .= '<html>';
+    $szHtml .=     '<head>';
+    $szHtml .=         '<meta charset="utf-8">';
+    $szHtml .=     '</head>';
+    $szHtml .=     '<body>';
+    $szHtml .=         "<form id=\"__allpayForm\" method=\"post\" target=\"{$target}\" action=\"{$ServiceURL}\">";
+
+    foreach ($arParameters as $keys => $value) {
+        $szHtml .=         "<input type=\"hidden\" name=\"{$keys}\" value='{$value}' />";
+    }
+
+    $szHtml .=             "<input type=\"hidden\" name=\"CheckMacValue\" value=\"{$szCheckMacValue}\" />";
+    if (!isset($paymentButton)) {
+        $szHtml .=  '<script type="text/javascript">document.getElementById("__allpayForm").submit();</script>';
+    }
+    else{
+        $szHtml .=  "<input type=\"submit\" id=\"__paymentButton\" value=\"{$paymentButton}\" />";
+    }
+    $szHtml .=         '</form>';
+    $szHtml .=     '</body>';
+    $szHtml .= '</html>';
+    return  $szHtml ;
+}
+```
+主要是針對`$paymentButton`去做調整<br>
+如果有比較現在版本跟以前版本的人會發現這個錯誤<br>
+缺少`if (!isset($paymentButton))`的判斷<br>
+如果官方的工程師有發現這個問題就趕快解吧<br>
+
+
+
+
