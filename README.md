@@ -43,7 +43,18 @@ composer install
 ```
 php artisan vendor:publish
 ```
-可至config/中查看
+
+可至config/allpay.php中查看
+預設是測試Allpay設定
+```php
+return [
+    'ServiceURL' => 'http://payment-stage.allpay.com.tw/Cashier/AioCheckOut',
+    'HashKey'    => '5294y06JbISpM5x9',
+    'HashIV'     => 'v77hoKGq4kWxNNIS',
+    'MerchantID' => '2000132',
+];
+```
+
 
 ---
 
