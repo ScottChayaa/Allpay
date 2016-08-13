@@ -5,7 +5,7 @@
 **step 1 : Download the package**<br>
 composer命令安裝
 ```
-composer require latrell/alipay dev-master
+composer require scottchayaa/allpay dev-master
 ```
 或者是新增package至composer.json
 ```
