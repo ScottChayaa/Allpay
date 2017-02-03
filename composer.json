@@ -1,5 +1,5 @@
 {
-    "name": "flamelin/ECPay",
+    "name": "flamelin/ecpay",
     "description": "ECPay for Laravel 5",
     "type": "ecTool",
     "keywords": ["ecpay"],
