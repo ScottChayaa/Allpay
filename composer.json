@@ -10,7 +10,7 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {"scottchayaa/allpay": "dev-master"},
     "autoload": {  
         "classmap": [
             "src/lib"
