@@ -1,8 +1,8 @@
 <?php
 
 Route::group([
-    'namespace' => 'ScottChayaa\Allpay\Controllers',
-    'prefix'    => 'allpay_demo_201608'],
+    'namespace' => 'flamelin\ECPay\Controllers',
+    'prefix' => 'ecpay_demo_201702'],
     function () {
         Route::get('/', 'DemoController@index');
         Route::get('/checkout', 'DemoController@checkout');

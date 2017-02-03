@@ -1,10 +1,10 @@
 <?php
 
-namespace ScottChayaa\Allpay;
+namespace flamelin\ECPay;
 
 use Illuminate\Support\ServiceProvider;
 
-class AllpayServiceProvider extends ServiceProvider
+class EcpayServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -17,11 +17,11 @@ class AllpayServiceProvider extends ServiceProvider
         include __DIR__ . '/routes.php';
 
         //Language
-        $this->loadTranslationsFrom(__DIR__ . '/Lang', 'allpay');
+        $this->loadTranslationsFrom(__DIR__ . '/Lang', 'ecpay');
 
         //Publish Config
         $this->publishes([
-            __DIR__ . '/Config/allpay.php' => config_path('allpay.php'),
+            __DIR__ . '/Config/ecpay.php' => config_path('ecpay.php'),
         ], 'config');
     }
 
@@ -33,14 +33,14 @@ class AllpayServiceProvider extends ServiceProvider
     public function register()
     {
         //Config
-        $this->mergeConfigFrom(__DIR__ . '/Config/allpay.php', 'allpay');
+        $this->mergeConfigFrom(__DIR__ . '/Config/ecpay.php', 'ecpay');
 
         //View
-        $this->loadViewsFrom(__DIR__ . '/Views', 'allpay');
+        $this->loadViewsFrom(__DIR__ . '/Views', 'ecpay');
 
         //Facade => Custom Class
-        $this->app['allpay'] = $this->app->share(function ($app) {
-            return new Allpay;
+        $this->app['ecpay'] = $this->app->share(function ($app) {
+            return new Ecpay;
         });
 
     }

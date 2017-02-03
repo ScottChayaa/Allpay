@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Allpay Demo Page</title>
+    <title>Ecpay Demo Page</title>
 </head>
 <body>
-	<form action="allpay_demo_201608/checkout">
-		<h1>Allpay Demo</h1>
+	<form action="ecpay_demo_201702/checkout">
+		<h1>Ecpay Demo</h1>
 		<hr>
 		<h2>ChoosePayment</h2>
 		<select name="payway">
@@ -17,6 +17,6 @@
 	</form>
 	<br>
 	<br>
-	See Example : <a href="https://github.com/allpay/PHP/blob/master/AioSDK/example">https://github.com/allpay/PHP/blob/master/AioSDK/example</a>
+	See Example : <a href="https://github.com/ECPay/ECPayAIO_PHP/blob/master/AioSDK/example">https://github.com/ECPay/ECPayAIO_PHP/blob/master/AioSDK/example</a>
 </body>
 </html>
