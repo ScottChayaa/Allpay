@@ -54,7 +54,10 @@ return [
     'MerchantID' => '2000132',
 ];
 ```
-
+<br>
+**step 4 : .env中新增APP_PAY_TEST<br>
+APP_PAY_TEST=true 直接使用測試的ServiceURL和其它參數,
+APP_PAY_TEST=false 使用config/ecpay.php中的參數.
 
 ---
 
