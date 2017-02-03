@@ -1,12 +1,12 @@
 {
-    "name": "scottchayaa/allpay",
-    "description": "Allpay - Laravel 5 version",
+    "name": "flamelin/ECPay",
+    "description": "ECPay for Laravel 5",
     "type": "ecTool",
-    "keywords": ["allpay"],
+    "keywords": ["ecpay"],
     "authors": [
         {
-            "name": "Scott Lin",
-            "email": "mmx112945@gmail.com"
+            "name": "AIRO",
+            "email": "service@airo.com.tw"
         }
     ],
     "minimum-stability": "dev",
@@ -16,7 +16,7 @@
             "src/lib"
         ],
         "psr-4": {
-            "ScottChayaa\\Allpay\\": "src/"
+            "flamelin\\ECPay\\": "src/"
         }
     }
 }
