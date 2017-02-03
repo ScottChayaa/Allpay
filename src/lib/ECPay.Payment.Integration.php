@@ -468,8 +468,9 @@ class ECPay_AllInOne {
     }
 
     //取得付款結果通知的方法
-    function CheckOutFeedback() {
-        return $arFeedback = ECPay_CheckOutFeedback::CheckOut($_POST,$this->HashKey,$this->HashIV,0);   
+    function CheckOutFeedback($ecpayPost = null) {
+        $ecpayPost = $ecpayPost? $ecpayPost : $_POST;
+        return $arFeedback = ECPay_CheckOutFeedback::CheckOut($ecpayPost,$this->HashKey,$this->HashIV,0);   
     }
 
     //訂單查詢作業
