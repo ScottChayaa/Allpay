@@ -2,6 +2,8 @@
 
 namespace flamelin\ECPay;
 
+use flamelin\ECPay\EcpayFactory;
+
 class Ecpay
 {
 
@@ -11,7 +13,7 @@ class Ecpay
 
     public function __construct()
     {
-        $this->instance = new \ECPay_AllInOne();
+        $this->instance = new EcpayFactory();
 
         env('APP_PAY_TEST')? $this->setForTest(): $this->setForProd();
 
