@@ -56,7 +56,7 @@ class DemoController extends Controller
 
         //Go to EcPay
         echo "緑界頁面導向中...";
-        // echo Ecpay::i()->CheckOutString();
-        Ecpay::i()->CheckOut();
+        echo Ecpay::i()->CheckOutString();
+        // Ecpay::i()->CheckOut();
     }
 }
