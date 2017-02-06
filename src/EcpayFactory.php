@@ -19,7 +19,7 @@ class EcpayFactory extends \ECPay_AllInOne
     //取得收到付款或取號結果通知後給緑界的回應值
     function getResponse($arFeedback = null) {
     	$arFeedback = collect($arFeedback);
-    	if (preg_match('/BARCODE|CSV/i', $arFeedback->get('PaymentType'))) {
+    	if (preg_match('/BARCODE|CVS/i', $arFeedback->get('PaymentType'))) {
     		return $arFeedback->get('RtnCode') === '10100073' ? '1|OK' : '0|fail'; // 取號成功 or 失敗
     	}
     	if (preg_match('/ATM/i', $arFeedback->get('PaymentType'))) {
