@@ -91,6 +91,16 @@ public function Demo()
 用laravel的人開發盡量使用`CheckOutString()`回傳String的方法<br>
 當然使用`CheckOut()`也是可以<br>
 但如果使用的話，我猜後面可能會碰到Get不到特定Session的問題<br>
+
+```php
+//付款成功後緑界背景callback
+public function doneDemo(Request $request)
+{
+    $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
+    print Ecpay::i()->getResponse($arFeedback);
+}
+```
+
 <br>
 ---
 
