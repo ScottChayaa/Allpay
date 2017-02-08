@@ -48,16 +48,21 @@ php artisan vendor:publish
 預設是測試Ecpay設定
 ```php
 return [
-    'ServiceURL' => 'https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V2',
-    'HashKey'    => '5294y06JbISpM5x9',
-    'HashIV'     => 'v77hoKGq4kWxNNIS',
-    'MerchantID' => '2000132',
+    'ServiceURL' => env('PAY_SERVICE_URL', 'https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V2'),
+    'HashKey' => env('PAY_HASH_KEY', '5294y06JbISpM5x9'),
+    'HashIV' => env('PAY_HASH_IV', 'v77hoKGq4kWxNNIS'),
+    'MerchantID' => env('PAY_MERCHANT_ID', '2000132'),
 ];
 ```
 <br>
-**step 4 : .env中新增APP_PAY_TEST<br>
-APP_PAY_TEST=true 直接使用測試的ServiceURL和其它參數,
+**step 4 : .env中新增參數<br>
+APP_PAY_TEST=true 直接使用測試的特店參數,
 APP_PAY_TEST=false 使用config/ecpay.php中的參數.
+
+PAY_SERVICE_URL=https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V2
+PAY_HASH_KEY=5294y06JbISpM5x9
+PAY_HASH_IV=v77hoKGq4kWxNNIS
+PAY_MERCHANT_ID=2000132
 
 ---
 
