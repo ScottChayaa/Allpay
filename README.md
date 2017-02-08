@@ -56,7 +56,7 @@ return [
 ```
 
 <br>
-**step 4 : .env中新增參數<br>
+**step 4 : .env中新增參數**<br>
 ```ini
 #付款測試 true : 直接使用測試的特店參數, false : 使用config/ecpay.php中的參數.
 APP_PAY_TEST=true
