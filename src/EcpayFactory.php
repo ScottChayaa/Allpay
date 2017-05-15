@@ -26,7 +26,7 @@ class EcpayFactory extends \ECPay_AllInOne
             return ($arFeedback->get('RtnCode') === '10100073' || $arFeedback->get('RtnCode') === '1') ? '1|OK' : '0|fail'; // 取號成功 or 失敗
         }
         if (preg_match('/ATM/i', $arFeedback->get('PaymentType'))) {
-            return $arFeedback->get('RtnCode') === '2' ? '1|OK' : '0|fail'; // 取號成功 or 失敗
+            return ($arFeedback->get('RtnCode') === '2' || $arFeedback->get('RtnCode') === '1') ? '1|OK' : '0|fail'; // 取號成功 or 失敗
         }
         return $arFeedback->get('RtnCode') === '1' ? '1|OK' : '0|fail'; // 付款成功 or 失敗
     }
