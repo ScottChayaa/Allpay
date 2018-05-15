@@ -3,6 +3,7 @@
     "description": "Allpay - Laravel 5 version",
     "type": "ecTool",
     "keywords": ["allpay"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Scott Lin",
@@ -10,7 +11,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "php": ">=5.5.9"
+    },
     "autoload": {  
         "classmap": [
             "src/lib"
