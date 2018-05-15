@@ -1,8 +1,6 @@
-## Allpay
-### Allpay - Laravel 5 version
-<br>
+## Allpay - Laravel 5 version
 
-**step 1 : Download the package**<br>
+### step 1 : Download the package
 composer命令安裝
 ```
 composer require scottchayaa/allpay dev-master
@@ -22,8 +20,7 @@ composer update
 composer install
 ```
 
-<br>
-**step 2 : Modify config file**<br>
+### step 2 : Modify config file
 增加`config/app.php`中的`providers`和`aliases`的參數
 ```
 'providers' => [
@@ -37,15 +34,14 @@ composer install
 ]
 ```
 
-<br>
-**step 3 : Publish config to your project**<br>
+### step 3 : Publish config to your project
 執行下列命令，將package的config檔配置到你的專案中
 ```
 php artisan vendor:publish
 ```
 
-可至config/allpay.php中查看
-預設是測試Allpay設定
+可至config/allpay.php中查看  
+預設是Allpay的測試環境設定
 ```php
 return [
     'ServiceURL' => 'http://payment-stage.allpay.com.tw/Cashier/AioCheckOut',
@@ -55,14 +51,12 @@ return [
 ];
 ```
 
-
 ---
 
 ### How To Use 
 ```php
 use Allpay;
-```
-```php
+
 public function Demo()
 {
     //Official Example : 
@@ -85,11 +79,11 @@ public function Demo()
     echo Allpay::i()->CheckOutString();
 }
 ```
-用laravel的人開發盡量使用`CheckOutString()`回傳String的方法<br>
-當然使用`CheckOut()`也是可以<br>
-但如果使用的話，我猜後面可能會碰到Get不到特定Session的問題<br>
-<br>
-PS : PaymentMethod前面一定要加反斜線 \ → 這目前我也沒辦法，如果有人知道怎麼樣可以不用加，請告訴我 <br>
+用laravel的人開發盡量使用`CheckOutString()`回傳String的方法  
+當然使用`CheckOut()`也是可以  
+但如果使用的話，我猜後面可能會碰到Get不到特定Session的問題  
+
+PS : PaymentMethod前面一定要加反斜線 \ → 這目前我也沒辦法，如果有人知道怎麼樣可以不用加，請告訴我  
 You Need to add Backslash '\' before PaymentMethod → I have no idea how to take it off. If someone know how to remove, please tell me how to do. thx~
 
 ---
@@ -98,15 +92,15 @@ You Need to add Backslash '\' before PaymentMethod → I have no idea how to tak
 Example Link : 
 http://localhost/[your-project]/public/allpay_demo_201608
 
-<br>
+
 ---
 
 ### Bug Fix Record
 AllPay.Payment.Integration.php : (Latest commit e9278b9)<br>
 https://github.com/allpay/PHP/commit/e9278b9cad76e6a71608bee3f5f4289982cfe16f
 
-**1. 修正 CheckOutString**<br>
-原本
+#### 1) 修正 CheckOutString
+原檔
 ```php
 static function CheckOutString($paymentButton,$target = "_self",$arParameters = array(),$arExtend = array(),$HashKey='',$HashIV='',$ServiceURL=''){
     
@@ -165,14 +159,14 @@ static function CheckOutString($paymentButton,$target = "_self",$arParameters = 
     return  $szHtml ;
 }
 ```
-主要是針對`$paymentButton`去做調整<br>
-如果有比較現在版本跟以前版本的人會發現這個錯誤<br>
-缺少`if (!isset($paymentButton))`的判斷<br>
-如果官方的工程師有發現這個問題就趕快解吧<br>
-<br>
+主要是針對`$paymentButton`去做調整  
+如果有比較現在版本跟以前版本的人會發現這個錯誤  
+缺少`if (!isset($paymentButton))`的判斷  
+如果官方的工程師有發現這個問題就趕快解吧  
 
-**2. 修正CheckOutFeedback**<br>
-原本
+
+#### 2) 修正CheckOutFeedback
+原檔
 ```php
 function CheckOutFeedback() {
     return $arFeedback = CheckOutFeedback::CheckOut($_POST,$this->HashKey,$this->HashIV,0);   
@@ -185,8 +179,8 @@ function CheckOutFeedback($allPost = null) {
     return $arFeedback = CheckOutFeedback::CheckOut($allPost,$this->HashKey,$this->HashIV,0);   
 }
 ```
-歐付寶回傳頁面時會使用到這個方法<br>
-使用方法 ex: 
+歐付寶回傳頁面時會使用到這個方法  
+使用方法 ex:  
 ```php
 public function PayReturn(Request $request)
 {
@@ -195,8 +189,8 @@ public function PayReturn(Request $request)
     //...
 }
 ```
-注意要傳入`$request->all()`<br>
-因為官方原本的方法是帶入`$_POST` → Laravel 5 不鳥你這個，所以會出錯<br>
-固做此修正<br>
-不過這部分沒有多做說明，留給大家試試看<br>
-<br>
+注意要傳入`$request->all()`  
+因為官方原本的方法是帶入`$_POST` → Laravel 5 不鳥你這個，所以會出錯  
+固做此修正  
+不過這部分沒有多做說明，留給大家試試看  
+  
